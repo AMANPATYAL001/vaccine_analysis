@@ -217,7 +217,7 @@ with left_column:
         st.header('Skewness')
         con="Skewness refers to a distortion or asymmetry that deviates from the symmetrical bell curve, or normal distribution, in a set of data" 
         st.write(con)               
-        st.image('skewness.jpg',width=350)
+        st.image('photos/skewness.jpg',width=350)
     # st.image('rskew.png',width=350)
         st.latex(r'''Skewness=\frac{3(Mean-Mode)}{Standard Deviation}''')
 st.subheader('Countries with Daily Vaccinations per million more than the percentage value')
