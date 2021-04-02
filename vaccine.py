@@ -271,6 +271,6 @@ if st.button('Download Report'):
     pdf.set_font('Times','',9)
     pdf.text(9,290,'Last updated Date is 02/04/2021 . Problem is being addressed . ')
     pdf.output('Vaccine Analysis.pdf', 'F')
-    html=create_download_link(pdf.output(dest="S").encode("latin-1"), "tuto1")
+    html=create_download_link(pdf.output(dest="S").encode("latin-1"), "vaccine")
     st.markdown(html, unsafe_allow_html=True)
     
