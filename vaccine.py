@@ -68,7 +68,7 @@ def seven_area():
                 height=600, width=492,template='plotly_dark')
     fig_seven_nations.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
     fig_seven_nations.update_yaxes(showticklabels=True)
-    fig_seven_nations.write_image('photos/fig_seven_nations.png')
+    #fig_seven_nations.write_image('photos/fig_seven_nations.png')
     return fig_seven_nations
 with left_column:
     st.plotly_chart(seven_area())
@@ -111,7 +111,7 @@ def seven_line():
         t=15,
         pad=4
     ))
-    fig_seven_nations_line.write_image('photos/fig_seven_nations_line.png')
+    #fig_seven_nations_line.write_image('photos/fig_seven_nations_line.png')
     return fig_seven_nations_line
 with right_column:
     st.plotly_chart(seven_line())
@@ -150,7 +150,7 @@ def us_ani(allow_output_mutation=True):
                         color_continuous_scale=px.colors.sequential.Plasma,
                         locationmode = 'USA-states',scope="usa",
                         animation_frame="timestamp", animation_group="location",height=550,width=900)
-    fig_us_map.write_image('photos/fig_us_map.png')
+    #fig_us_map.write_image('photos/fig_us_map.png')
     return fig_us_map
 
 st.plotly_chart(us_ani())
@@ -167,7 +167,7 @@ def three_hist(op_bar):
     fig_3_nations = px.bar(e, x="date", y="daily_vaccinations_per_million",
                 color="country",
                 barmode = sel_bar,width=900, height=500)
-    fig_3_nations.write_image('photos/fig_3_nations.png')
+    #fig_3_nations.write_image('photos/fig_3_nations.png')
     return fig_3_nations
 st.plotly_chart(three_hist(op_bar))#,use_container_width=True)
 ##### three nation's histogram cases #####
@@ -185,7 +185,7 @@ def top_20_states():
     fig_us_statewise.update_layout(width=900, height=600,font=dict(
             family="Courier New, monospace",size=10))
     fig_us_statewise.update_traces(texttemplate='%{text:.3s}', textposition='outside')
-    fig_us_statewise.write_image('photos/fig_us_20.png')
+    #fig_us_statewise.write_image('photos/fig_us_20.png')
     return fig_us_statewise
 st.plotly_chart(top_20_states())
 ##### us statewise histogram ####
@@ -235,7 +235,7 @@ def current_world():
                         locationmode = 'country names',
                         range_color=(f.daily_vaccinations_per_million.min(),f.daily_vaccinations_per_million.max()*percent_op)
                         ,height=500,width=900)
-    fig_current.write_image('photos/fig_current.png')
+    #fig_current.write_image('photos/fig_current.png')
     return fig_current
 st.plotly_chart(current_world())
 #######complete#########skewness##
