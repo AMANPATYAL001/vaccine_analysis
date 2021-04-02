@@ -263,7 +263,7 @@ if st.button('Download Report'):
     pdf.image('photos/fig_3_nations.png',5,152,205,150)
     pdf.add_page()
     pdf.image('photos/fig_seven_nations_line.png',5,3,190,160)
-    pdf.add_font('AR CHRISTY medium','B','C:/Windows/Fonts/ARCHRISTY.TTF',uni=True)
+    pdf.add_font('AR CHRISTY medium','B','photos/ARCHRISTY.TTF',uni=True)
     pdf.set_font('AR CHRISTY medium', 'B', 30)
     pdf.text(5,210,'Special Thanks to the open source Community ')
     pdf.text(5,240,'For Constant support and Always there for us')
