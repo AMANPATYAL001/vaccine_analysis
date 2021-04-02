@@ -249,7 +249,7 @@ if st.button('Download Report'):
     pdf = FPDF()
     pdf.add_page()
     pdf.image('photos/pythongirl.jpg',0,0,210)
-    pdf.add_font('AR DELANEY medium','B','C:/Windows/Fonts/ARDELANEY.TTF',uni=True)
+    pdf.add_font('AR DELANEY medium','B','photos/ARDELANEY.TTF',uni=True)
     pdf.set_font('AR DELANEY medium', 'B', 70)
     pdf.text(50,290,'PDF Report')
     pdf.add_page()
