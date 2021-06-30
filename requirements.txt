@@ -1,4 +1,4 @@
 fpdf==1.7.2
 pandas==0.24.2
-streamlit==0.74.1
+streamlit==0.83.0
 plotly==4.14.3
