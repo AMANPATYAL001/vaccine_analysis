@@ -59,7 +59,7 @@ st.plotly_chart(world_ani(sel_map_color))
 #### seven nation's area chart ####
 c=df.dropna(subset=['people_fully_vaccinated'],axis=0).query('country == "India" or country == "United States" or country == "Australia" or country == "England" or country == "Russia" or country == "New Zealand" or country == "Canada"')
 st.subheader('Seven Countries People fully Vaccinated Progress Graph')
-left_column, right_column = st.beta_columns(2)
+left_column, right_column = st.columns(2)
 @st.cache
 def seven_area():
     fig_seven_nations = px.area(pd.crosstab(index=c.date,columns=c.country,values=c.people_fully_vaccinated,aggfunc='sum'),
@@ -68,7 +68,7 @@ def seven_area():
                 height=600, width=492,template='plotly_dark')
     fig_seven_nations.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
     fig_seven_nations.update_yaxes(showticklabels=True)
-    #fig_seven_nations.write_image('photos/fig_seven_nations.png')
+    #fig_seven_nations.write_image('res/fig_seven_nations.png')
     return fig_seven_nations
 with left_column:
     st.plotly_chart(seven_area())
@@ -111,7 +111,7 @@ def seven_line():
         t=15,
         pad=4
     ))
-    #fig_seven_nations_line.write_image('photos/fig_seven_nations_line.png')
+    #fig_seven_nations_line.write_image('res/fig_seven_nations_line.png')
     return fig_seven_nations_line
 with right_column:
     st.plotly_chart(seven_line())
@@ -150,7 +150,7 @@ def us_ani(allow_output_mutation=True):
                         color_continuous_scale=px.colors.sequential.Plasma,
                         locationmode = 'USA-states',scope="usa",
                         animation_frame="timestamp", animation_group="location",height=550,width=900)
-    #fig_us_map.write_image('photos/fig_us_map.png')
+    #fig_us_map.write_image('res/fig_us_map.png')
     return fig_us_map
 
 st.plotly_chart(us_ani())
@@ -167,7 +167,7 @@ def three_hist(op_bar):
     fig_3_nations = px.bar(e, x="date", y="daily_vaccinations_per_million",
                 color="country",
                 barmode = sel_bar,width=900, height=500)
-    #fig_3_nations.write_image('photos/fig_3_nations.png')
+    #fig_3_nations.write_image('res/fig_3_nations.png')
     return fig_3_nations
 st.plotly_chart(three_hist(op_bar))#,use_container_width=True)
 ##### three nation's histogram cases #####
@@ -185,7 +185,7 @@ def top_20_states():
     fig_us_statewise.update_layout(width=900, height=600,font=dict(
             family="Courier New, monospace",size=10))
     fig_us_statewise.update_traces(texttemplate='%{text:.3s}', textposition='outside')
-    #fig_us_statewise.write_image('photos/fig_us_20.png')
+    #fig_us_statewise.write_image('res/fig_us_20.png')
     return fig_us_statewise
 st.plotly_chart(top_20_states())
 ##### us statewise histogram ####
@@ -197,7 +197,7 @@ f=df.groupby('country').agg({'date':'max','total_vaccinations':'last',\
 
 percent_op=st.number_input('Enter the Percentage(to Handle the Right Skewness)',min_value=30,max_value=90,value=90)
 percent_op/=100
-left_column, right_column = st.beta_columns(2)
+left_column, right_column = st.columns(2)
 
 @st.cache
 def skew_table():
@@ -213,11 +213,11 @@ def skew_table():
         return fig   
 with left_column: 
     st.markdown('Daily Vaccination per Million is **Highly Right Skewed**, So we take Percentage of Max value to cut out the Max value/s')
-    with st.beta_expander("See Definition"):
+    with st.expander("See Definition"):
         st.header('Skewness')
         con="Skewness refers to a distortion or asymmetry that deviates from the symmetrical bell curve, or normal distribution, in a set of data" 
         st.write(con)               
-        st.image('photos/skewness.jpg',width=350)
+        st.image('res/skewness.jpg',width=350)
     # st.image('rskew.png',width=350)
         st.latex(r'''Skewness=\frac{3(Mean-Mode)}{Standard Deviation}''')
 st.subheader('Countries with Daily Vaccinations per million more than the percentage value')
@@ -235,7 +235,7 @@ def current_world():
                         locationmode = 'country names',
                         range_color=(f.daily_vaccinations_per_million.min(),f.daily_vaccinations_per_million.max()*percent_op)
                         ,height=500,width=900)
-    #fig_current.write_image('photos/fig_current.png')
+    #fig_current.write_image('res/fig_current.png')
     return fig_current
 st.plotly_chart(current_world())
 #######complete#########skewness##
@@ -248,22 +248,22 @@ if st.button('Download Report'):
     st.balloons()
     pdf = FPDF()
     pdf.add_page()
-    pdf.image('photos/pythongirl.jpg',0,0,210)
-    pdf.add_font('AR DELANEY medium','B','photos/ARDELANEY.TTF',uni=True)
+    pdf.image('res/pythongirl.jpg',0,0,210)
+    pdf.add_font('AR DELANEY medium','B','res/ARDELANEY.TTF',uni=True)
     pdf.set_font('AR DELANEY medium', 'B', 70)
     pdf.text(50,290,'PDF Report')
     pdf.add_page()
     pdf.set_font('Arial', 'B', 16)
     pdf.text(0,0,'Date : 02/04/2021')
     pdf.set_font('Arial', 'B', 16)
-    pdf.image('photos/fig_seven_nations.png',5,20,200,150)
-    pdf.image('photos/fig_current.png',3,170,210,150)
+    pdf.image('res/fig_seven_nations.png',5,20,200,150)
+    pdf.image('res/fig_current.png',3,170,210,150)
     pdf.add_page()
-    pdf.image('photos/fig_us_map.png',5,5,210,150)
-    pdf.image('photos/fig_3_nations.png',5,152,205,150)
+    pdf.image('res/fig_us_map.png',5,5,210,150)
+    pdf.image('res/fig_3_nations.png',5,152,205,150)
     pdf.add_page()
-    pdf.image('photos/fig_seven_nations_line.png',5,3,190,160)
-    pdf.add_font('AR CHRISTY medium','B','photos/ARCHRISTY.TTF',uni=True)
+    pdf.image('res/fig_seven_nations_line.png',5,3,190,160)
+    pdf.add_font('AR CHRISTY medium','B','res/ARCHRISTY.TTF',uni=True)
     pdf.set_font('AR CHRISTY medium', 'B', 30)
     pdf.text(5,210,'Special Thanks to the open source Community ')
     pdf.text(5,240,'For Constant support and Always there for us')
