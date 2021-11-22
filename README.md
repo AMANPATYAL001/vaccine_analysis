@@ -11,6 +11,14 @@
 - world and US maps with timeline animation.
 - pdf report download function (some bugs).
 
+<br>
+
+###  Live data (world) from [github](https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv ) 
+
+###  Live data (US) from [github]('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv')
+
+<br>
+
 ![](res/vaccine.gif)
 <br>
 
